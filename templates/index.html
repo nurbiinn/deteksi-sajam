@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Sistem Identifikasi Senjata Tajam</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="container header-container">
+        <div class="logo">
+          <img src="{{ url_for('static', filename='usu-logo.png') }}" alt="Logo USU">
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('tutorial') }}">Tutorial</a></li>
+            <li><a href="{{ url_for('informasi') }}">Informasi</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero-section">
+      <div class="container">
+        <div class="hero-text">
+          <h1>Sistem Identifikasi Senjata Tajam</h1>
+          <p>Dengan Teknologi YOLOv8, YOLOv9, dan YOLOv10, sistem ini membantu mengidentifikasi Senjata Tajam secara real-time dari kamera Anda</p>
+          <a href="{{ url_for('upload') }}" class="btn-primary">Coba Deteksi Sekarang</a>
+
+          <!-- Tambahan: Mengapa Memilih Sistem Ini -->
+          <h2 style="margin-top: 40px;">Mengapa memilih Sistem ini ?</h2>
+          <div class="features">
+            <div class="feature-box">
+              <h3>Akurasi Tinggi</h3>
+              <p>Model deep learning mencapai akurasi hingga 95% dalam deteksi senjata tajam</p>
+            </div>
+            <div class="feature-box">
+              <h3>Otomatis & Real-Time</h3>
+              <p>Langsung dari kamera, tanpa perlu pengaturan khusus</p>
+            </div>
+            <div class="feature-box">
+              <h3>Siap Industri</h3>
+              <p>Cocok untuk pengawasan keamanan di tempat umum dan privat</p>
+            </div>
+            <div class="feature-box">
+              <h3>Berbasis Web</h3>
+              <p>Dapat diakses di berbagai perangkat tanpa instalasi tambahan</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2025 Universitas Sumatera Utara | Sistem Identifikasi Senjata Tajam</p>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

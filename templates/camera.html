@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Deteksi Senjata dari Kamera</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f7f7;
+            text-align: center;
+            padding: 20px;
+        }
+
+        video, canvas, img {
+            border: 2px solid #205c20;
+            border-radius: 8px;
+            width: 60%;
+            max-width: 600px;
+            height: auto;
+            margin-top: 20px;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        button, select {
+            background-color: #205c20;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        button:hover, select:hover {
+            background-color: #174a17;
+        }
+
+        a {
+            display: block;
+            margin-top: 30px;
+            color: #205c20;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Deteksi Senjata Tajam dari Kamera</h1>
+
+    <label for="model-select"><strong>Pilih Model:</strong></label><br>
+    <select id="model-select">
+        <option value="yolov8">YOLOv8</option>
+        <option value="yolov9">YOLOv9</option>
+        <option value="yolov10">YOLOv10</option>
+    </select>
+
+    <video id="video" autoplay></video>
+    <canvas id="canvas" style="display: none;"></canvas>
+    <img id="result-image" style="display: none;" alt="Hasil Deteksi"/>
+
+    <div class="controls">
+        <button onclick="takeSnapshot()">Ambil Gambar & Deteksi</button>
+        <a href="{{ url_for('upload') }}">Kembali ke Upload</a>
+    </div>
+
+    <script>
+        const cameraUrl = "{{ url_for('camera') }}";
+        const video = document.getElementById('video');
+        const canvas = document.getElementById('canvas');
+        const context = canvas.getContext('2d');
+
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(stream => {
+                video.srcObject = stream;
+            })
+            .catch(err => {
+                alert('Tidak dapat mengakses kamera: ' + err);
+            });
+
+        function takeSnapshot() {
+            const selectedModel = document.getElementById('model-select').value;
+
+            canvas.width = video.videoWidth;
+            canvas.height = video.videoHeight;
+            context.drawImage(video, 0, 0, canvas.width, canvas.height);
+
+            const imageData = canvas.toDataURL('image/png');
+
+            fetch(cameraUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    image: imageData,
+                    model: selectedModel
+                })
+            })
+            .then(response => {
+                if (!response.ok) throw new Error('Gagal dari server');
+                return response.json();
+            })
+            .then(data => {
+                if (data.detections && data.detections.length > 0) {
+                    let resultText = "Objek terdeteksi:\n";
+                    data.detections.forEach(d => {
+                        resultText += `- ${d.label} (${d.confidence}%)\n`;
+                    });
+                    alert(resultText);
+                } else {
+                    alert("on process.");
+                }
+
+                const resultImg = document.getElementById('result-image');
+                resultImg.src = data.debug_image_url;
+                resultImg.style.display = 'block';
+            })
+            .catch(error => {
+                alert('Gagal mengirim gambar: ' + error);
+            });
+        }
+    </script>
+</body>
+</html>

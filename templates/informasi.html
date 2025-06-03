@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Informasi</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    .content {
+      text-align: justify;
+      line-height: 1.8;
+      font-size: 16px;
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    p {
+      margin-bottom: 20px;
+    }
+
+    .image-box {
+      border: 2px solid #ccc;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 40px;
+      text-align: center;
+      background-color: #f9f9f9;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    }
+
+    .image-box img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+
+    .image-caption {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #555;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="container header-container">
+        <div class="logo">
+          <img src="{{ url_for('static', filename='usu-logo.png') }}" alt="Logo USU">
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('tutorial') }}">Tutorial</a></li>
+            <li><a href="{{ url_for('informasi') }}">Informasi</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="content container">
+      <h1>Informasi Tentang Sistem Deteksi Senjata Tajam</h1>
+
+      <p>
+        Sistem deteksi senjata tajam ini merupakan solusi keamanan cerdas berbasis teknologi <strong>YOLO (You Only Look Once)</strong>
+        yang mampu mengidentifikasi keberadaan objek berbahaya seperti <em>pisau</em> dan <em>pistol</em> dalam gambar atau video secara real-time.
+      </p>
+
+      <p>
+        Dengan memanfaatkan model deep learning terkini seperti <strong>YOLOv8</strong>, <strong>YOLOv9</strong>, dan <strong>YOLOv10</strong>,
+        sistem ini dapat mendeteksi senjata dengan tingkat akurasi tinggi bahkan dalam kondisi pencahayaan yang kompleks atau latar belakang yang ramai.
+      </p>
+
+      <p>
+        Aplikasi ini dirancang untuk mudah digunakan oleh berbagai kalangan, seperti institusi pendidikan, area publik, atau sistem keamanan rumah.
+        Pengguna cukup mengunggah gambar atau mengaktifkan kamera untuk memulai proses deteksi senjata secara otomatis.
+      </p>
+
+      <p>
+        Dengan sistem ini, diharapkan tindakan preventif terhadap ancaman senjata dapat ditingkatkan,
+        sehingga membantu menjaga keamanan lingkungan secara proaktif dan efisien.
+      </p>
+
+      <div class="image-box">
+        <img src="{{ url_for('static', filename='contoh_deteksi.jpg') }}" alt="Contoh hasil deteksi senjata">
+        <div class="image-caption">Contoh hasil deteksi senjata dengan bounding box menggunakan model YOLO</div>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2025 Universitas Sumatera Utara | Sistem Deteksi Senjata Tajam</p>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

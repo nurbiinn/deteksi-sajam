@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload Gambar</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="container header-container">
+        <div class="logo">
+          <img src="{{ url_for('static', filename='usu-logo.png') }}" alt="Logo USU">
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('tutorial') }}">Tutorial</a></li>
+            <li><a href="{{ url_for('informasi') }}">Informasi</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="content container upload-section">
+      <h1>Identifikasi Senjata Tajam</h1>
+      <p>Unggah gambar atau aktifkan kamera untuk mendeteksi keberadaan senjata tajam secara real-time dengan teknologi YOLOv8, YOLOv9, atau YOLOv10</p>
+
+      <!-- Form Upload Gambar -->
+      <form method="POST" action="{{ url_for('upload') }}" enctype="multipart/form-data" class="upload-form">
+        <label for="model">Pilih Model Deteksi:</label>
+        <select name="model" id="model" required>
+          <option value="yolov8">YOLOv8</option>
+          <option value="yolov9">YOLOv9</option>
+          <option value="yolov10">YOLOv10</option>
+        </select>
+
+        <input type="file" name="image" accept="image/*" required>
+
+        <button type="submit" class="btn-icon">
+          <img src="{{ url_for('static', filename='icon-upload.png') }}" alt="Upload Icon">
+          Upload dan Deteksi
+        </button>
+      </form>
+
+      <!-- Kamera -->
+      <div class="camera-section">
+        <p>Atau gunakan kamera untuk deteksi langsung</p>
+        <form method="GET" action="{{ url_for('camera') }}" class="camera-form">
+          <label for="camera_model">Pilih Model Deteksi:</label>
+          <select name="model" id="camera_model" required>
+            <option value="yolov8">YOLOv8</option>
+            <option value="yolov9">YOLOv9</option>
+            <option value="yolov10">YOLOv10</option>
+          </select>
+
+          <button type="submit" class="btn-icon">
+            <img src="{{ url_for('static', filename='icon-camera.png') }}" alt="Camera Icon">
+            Aktifkan Kamera
+          </button>
+        </form>
+      </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2025 Universitas Sumatera Utara | Sistem Identifikasi Senjata Tajam</p>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>

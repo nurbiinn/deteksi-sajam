@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tutorial</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    .tutorial-step {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 40px;
+      gap: 20px;
+    }
+
+    .tutorial-step img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+    }
+
+    .tutorial-text {
+      text-align: justify;
+      flex: 1;
+    }
+
+    .tutorial-footer {
+      text-align: center;
+      margin-top: 40px;
+      font-size: 1.05rem;
+    }
+
+    .tutorial-step strong {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 1.1rem;
+      color: #205c20;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="container header-container">
+        <div class="logo">
+          <img src="{{ url_for('static', filename='usu-logo.png') }}" alt="Logo USU">
+        </div>
+        <nav class="main-nav">
+          <ul>
+            <li><a href="{{ url_for('home') }}">Home</a></li>
+            <li><a href="{{ url_for('tutorial') }}">Tutorial</a></li>
+            <li><a href="{{ url_for('informasi') }}">Informasi</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="content container">
+      <h1 style="text-align: center; margin-bottom: 40px;">Cara Menggunakan Sistem Identifikasi Senjata Tajam</h1>
+
+      <!-- Step 1 -->
+      <div class="tutorial-step">
+        <img src="{{ url_for('static', filename='step1.png') }}" alt="Step 1">
+        <div class="tutorial-text">
+          <strong>1. Buka Halaman Upload</strong>
+          Klik menu <em>Upload</em> pada navigasi utama. Pilih gambar atau aktifkan kamera Anda untuk mulai proses deteksi senjata tajam.
+        </div>
+      </div>
+
+      <!-- Step 2 -->
+      <div class="tutorial-step">
+        <img src="{{ url_for('static', filename='step2.png') }}" alt="Step 2">
+        <div class="tutorial-text">
+          <strong>2. Mulai Deteksi</strong>
+          Setelah gambar diunggah atau kamera aktif, tekan tombol <em>Deteksi</em>. Sistem akan langsung menjalankan deteksi menggunakan model YOLOv8, YOLOv9, atau YOLOv10.
+        </div>
+      </div>
+
+      <!-- Step 3 -->
+      <div class="tutorial-step">
+        <img src="{{ url_for('static', filename='step3.png') }}" alt="Step 3">
+        <div class="tutorial-text">
+          <strong>3. Lihat Hasilnya</strong>
+          Dalam hitungan detik, sistem akan menampilkan hasil deteksi dan memberi peringatan jika ditemukan objek yang terindikasi sebagai senjata tajam.
+        </div>
+      </div>
+
+      <p class="tutorial-footer">
+        Sistem ini dirancang untuk mendukung pengawasan keamanan secara real-time dan mudah digunakan oleh siapa saja. <strong>Selamat Mencoba!</strong>
+      </p>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; 2025 Universitas Sumatera Utara | Sistem Identifikasi Senjata Tajam</p>
+      </div>
+    </footer>
+
+  </div>
+</body>
+</html>
